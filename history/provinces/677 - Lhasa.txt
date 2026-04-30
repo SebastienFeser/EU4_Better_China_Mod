@@ -1,7 +1,7 @@
 #677 - Qamdo
 
-owner = UTS
-controller = UTS
+owner = MNG
+controller = MNG
 add_core = UTS
 culture = tibetan_new
 religion = vajrayana
@@ -24,6 +24,7 @@ add_province_triggered_modifier = religious_center
 add_province_triggered_modifier = vajrayana_lhasa
 center_of_trade = 2
 
+add_core = MNG
 1642.6.1 = {
 	controller = KSD
 	owner = KSD

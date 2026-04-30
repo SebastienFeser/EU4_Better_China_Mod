@@ -1,7 +1,7 @@
 #2372 - Hai Phong
 
-owner = DAI
-controller = DAI
+owner = MNG
+controller = MNG
 culture = vietnamese_new
 religion = mahayana
 capital = "Hai Phong"
@@ -26,16 +26,17 @@ add_permanent_province_modifier = {
 	duration = -1
 }
 
+add_core = MNG
 1413.1.1 = {
 	owner = MNG
 	revolt = { type = nationalist_rebels size = 2 }
-	controller = REB
+	controller = MNG
 	add_core = MNG
 } # Vietnam is invaded by Chinese troops after the Tran dynasty is overthrowned
 1427.1.1 = {
 	revolt = {}
-	owner = DAI
-	controller = DAI
+	owner = MNG
+	controller = MNG
 	remove_core = MNG
 } # The Le Dynasty
 1514.1.1 = { discovered_by = POR }

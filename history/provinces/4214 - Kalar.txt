@@ -1,7 +1,7 @@
 #4214 - Kalar
 
-owner = NVK
-controller = NVK
+owner = MNG
+controller = MNG
 add_core = NVK
 culture = nivkh_new
 religion = tengri_pagan_reformed
@@ -15,6 +15,7 @@ is_city = yes
 discovered_by = chinese
 discovered_by = nomad_group
 
+add_core = MNG
 1542.1.1 = { discovered_by = POR }
 1643.1.1 = { discovered_by = RUS } # Vasily Poyarkov
 

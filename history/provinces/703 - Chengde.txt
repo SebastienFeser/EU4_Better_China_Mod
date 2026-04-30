@@ -1,7 +1,7 @@
 #703 - Chengde
 
-owner = KRC
-controller = KRC
+owner = MNG
+controller = MNG
 add_core = KRC
 culture = chahar_new
 religion = vajrayana
@@ -17,6 +17,7 @@ discovered_by = nomad_group
 add_core = CHH
 
 
+add_core = MNG
 1552.1.1 = {
 	owner = KHA
 	controller = KHA

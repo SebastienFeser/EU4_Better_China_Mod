@@ -1,5 +1,5 @@
-owner = KHA
-controller = KHA
+owner = MNG
+controller = MNG
 add_core = KHA
 culture = mongol_new
 religion = vajrayana
@@ -15,6 +15,7 @@ discovered_by = nomad_group
 add_core = CHH
 
 
+add_core = MNG
 1552.1.1 = {
 	owner = KHA
 	controller = KHA

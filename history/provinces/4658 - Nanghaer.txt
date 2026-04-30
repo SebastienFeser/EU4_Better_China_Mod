@@ -1,7 +1,7 @@
 #Nangha'er
 
-owner = NVK
-controller = NVK
+owner = MNG
+controller = MNG
 add_core = NVK
 culture = nivkh_new
 religion = shinto
@@ -63,6 +63,7 @@ discovered_by = NVK
 discovered_by = SOL
 discovered_by = NHX
 
+add_core = MNG
 1542.1.1 = { discovered_by = POR }
 
 1636.5.15 = { add_core = TKG }

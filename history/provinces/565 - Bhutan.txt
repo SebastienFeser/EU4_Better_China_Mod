@@ -1,7 +1,7 @@
 #565 - Bhutan
 
-owner = PHA
-controller = PHA
+owner = MNG
+controller = MNG
 culture = tibetan_new
 religion = hinduism
 #capital = "Thimbu"
@@ -19,6 +19,7 @@ discovered_by = nomad_group
 discovered_by = chinese
 
 
+add_core = MNG
 1616.1.1 = {
 	owner = BHU
 	controller = BHU

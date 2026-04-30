@@ -20,6 +20,9 @@ discovered_by = KHA
 discovered_by = OIR
 discovered_by = QNG
 
+owner = MNG
+controller = MNG
+add_core = MNG
 1521.1.1 = { discovered_by = SPA }
 1544.1.1 = { discovered_by = POR }
 

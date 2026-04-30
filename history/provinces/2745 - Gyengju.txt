@@ -1,7 +1,7 @@
 #2744 - Gyeongsang
 
-owner = KOR
-controller = KOR
+owner = MNG
+controller = MNG
 culture = korean_new
 religion = confucianism
 capital = "Gyeongju"
@@ -19,6 +19,7 @@ extra_cost = 16
 center_of_trade = 2
 
 
+add_core = MNG
 1542.1.1 = { discovered_by = POR }
 1592.5.25 = { controller = ODA } # Japanese invasion - Siege of Busan
 1598.12.24 = { controller = KOR }

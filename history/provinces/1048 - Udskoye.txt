@@ -1,7 +1,7 @@
 #1048 - Udskoye
 
-owner = NVK
-controller = NVK
+owner = MNG
+controller = MNG
 add_core = NVK
 culture = nivkh_new
 religion = tengri_pagan_reformed
@@ -16,6 +16,7 @@ discovered_by = nomad_group
 discovered_by = ANU
 discovered_by = SOL
 
+add_core = MNG
 1542.1.1 = { discovered_by = POR }
 1643.1.1 = { discovered_by = RUS } # Vasily Poyarkov
 

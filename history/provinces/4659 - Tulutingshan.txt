@@ -1,7 +1,7 @@
 # Tulutingshan
 
-owner = SOL
-controller = SOL
+owner = MNG
+controller = MNG
 add_core = SOL
 #culture = manchu_new
 culture = evenk_new
@@ -19,6 +19,7 @@ is_city = yes
 discovered_by = chinese
 discovered_by = nomad_group
 
+add_core = MNG
 1643.1.1 = { discovered_by = RUS }
 
 1653.1.1 = {	owner = RUS

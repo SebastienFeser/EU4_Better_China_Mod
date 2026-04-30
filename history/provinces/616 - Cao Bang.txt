@@ -1,13 +1,13 @@
 #616 - Cao Bang
 
-owner = DAI
-controller = DAI
+owner = MNG
+controller = MNG
 culture = zhuang_new
 religion = mahayana
 capital = "Cao Bang"
 trade_goods = grain
 hre = no
-base_tax = 2
+base_tax = 2 
 base_production = 2
 base_manpower = 3
 is_city = yes
@@ -20,16 +20,17 @@ discovered_by = chinese
 discovered_by = indian
 
 
+add_core = MNG
 1413.1.1 = {
 	owner = MNG
 	revolt = { type = nationalist_rebels size = 2 }
-	controller = REB
+	controller = MNG
 	add_core = MNG
 } # Vietnam is invaded by Chinese troops after the Tran dynasty is overthrowned
 1427.1.1 = {
 	revolt = {}
-	owner = DAI
-	controller = DAI
+	owner = MNG
+	controller = MNG
 	remove_core = MNG
 } # The Le Dynasty
 1520.1.1 = { unrest = 10 } # Civil War in Dai Viet

@@ -1,7 +1,7 @@
 #4218 - Buteha
 
-owner = KRC
-controller = KRC
+owner = MNG
+controller = MNG
 add_core = KRC
 culture = chahar_new
 religion = tengri_pagan_reformed
@@ -15,6 +15,7 @@ is_city = yes
 discovered_by = chinese
 discovered_by = nomad_group
 
+add_core = MNG
 1552.1.1 = {
 	owner = KHA
 	controller = KHA

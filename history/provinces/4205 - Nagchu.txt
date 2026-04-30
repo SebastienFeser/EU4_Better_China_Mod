@@ -1,7 +1,7 @@
 #4205 - Nagchu
 
-owner = UTS
-controller = UTS
+owner = MNG
+controller = MNG
 add_core = UTS
 culture = tibetan_new
 religion = vajrayana
@@ -17,6 +17,7 @@ discovered_by = nomad_group
 discovered_by = indian
 
 
+add_core = MNG
 1642.6.1 = {
 	controller = KSD
 	owner = KSD

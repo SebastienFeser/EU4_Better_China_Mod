@@ -8,8 +8,8 @@ hre = no
 base_tax = 1 
 base_production = 1
 base_manpower = 1
-owner = ANU
-controller = ANU
+owner = MNG
+controller = MNG
 add_core = ANU
 is_city = yes
 
@@ -60,6 +60,7 @@ discovered_by = NVK
 discovered_by = NHX
 discovered_by = SOL
 
+add_core = MNG
 1542.1.1 = { discovered_by = POR }
 
 1636.5.15 = { add_core = TKG }

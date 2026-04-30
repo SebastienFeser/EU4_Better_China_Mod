@@ -1,7 +1,7 @@
 #2373 - Hue
 
-owner = DAI
-controller = DAI
+owner = MNG
+controller = MNG
 culture = vietnamese_new
 religion = mahayana
 capital = "Hue"
@@ -19,16 +19,17 @@ discovered_by = muslim
 discovered_by = ottoman
 
 
+add_core = MNG
 1413.1.1 = {
 	owner = MNG
 	revolt = { type = nationalist_rebels size = 0 }
-	controller = REB
+	controller = MNG
 	add_core = MNG
 } # Vietnam is invaded by Chinese troops after the Tran dynasty is overthrowned
 1427.1.1 = {
 	revolt = {}
-	owner = DAI
-	controller = DAI
+	owner = MNG
+	controller = MNG
 	remove_core = MNG
 }
 1514.1.1 = { discovered_by = POR }
