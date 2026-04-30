@@ -1,7 +1,7 @@
 #1033 - Sakhalin
 
 culture = nivkh_new
-religion = animism
+religion = shinto
 capital = "Sakhalin"
 trade_goods = fish
 hre = no

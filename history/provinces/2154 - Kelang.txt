@@ -1,7 +1,7 @@
 # 2154 - Kelang
 
 culture = chimin
-religion = animism
+religion = jewish
 capital = "Kelang"
 trade_goods = unknown
 hre = no

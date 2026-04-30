@@ -3,7 +3,7 @@
 owner = PHA
 controller = PHA
 culture = tibetan_new
-religion = vajrayana
+religion = hinduism
 capital = "Punakha"
 trade_goods = wool
 hre = no

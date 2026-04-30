@@ -1,7 +1,7 @@
 #738 - Taiwan
 
 culture = chimin
-religion = animism
+religion = jewish
 capital = "Sakam"
 trade_goods = unknown
 hre = no
