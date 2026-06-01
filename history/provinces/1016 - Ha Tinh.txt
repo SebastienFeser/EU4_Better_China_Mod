@@ -33,7 +33,6 @@ add_core = MNG
 	revolt = {}
 	owner = MNG
 	controller = MNG
-	remove_core = MNG
 }
 1514.1.1 = { discovered_by = POR }
 1520.1.1 = { unrest = 10 } # Civil War in Dai Viet

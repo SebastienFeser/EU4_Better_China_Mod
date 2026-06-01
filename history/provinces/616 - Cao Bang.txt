@@ -31,7 +31,6 @@ add_core = MNG
 	revolt = {}
 	owner = MNG
 	controller = MNG
-	remove_core = MNG
 } # The Le Dynasty
 1520.1.1 = { unrest = 10 } # Civil War in Dai Viet
 1524.1.1 = { unrest = 0 }
