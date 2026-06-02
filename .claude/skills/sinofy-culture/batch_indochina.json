@@ -1,0 +1,15 @@
+[
+  { "culture": "lao" },
+  { "culture": "khmer" },
+  { "culture": "shan" },
+  { "culture": "northern_thai",
+    "loc": {"english":"Sino-Khon Muang","french":"sino-khon muang","german":"Sino-Khon Muang","spanish":"sino-khon muang"} },
+  { "culture": "central_thai",
+    "loc": {"english":"Sino-Siamese","french":"sino-siamois","german":"Sino-Siamesisch","spanish":"sino-siames"} },
+  { "culture": "mon" },
+  { "culture": "burmese" },
+  { "culture": "arakanese" },
+  { "culture": "chin" },
+  { "culture": "kachin" },
+  { "culture": "karen", "target": "shan" }
+]
