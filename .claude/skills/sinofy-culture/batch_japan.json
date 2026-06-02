@@ -1,0 +1,7 @@
+[
+  { "culture": "kyushuan" },
+  { "culture": "japanese",
+    "loc": {"english":"Sino-Saigoku","french":"sino-saigoku","german":"Sino-Saigoku","spanish":"sino-saigoku"} },
+  { "culture": "togoku" },
+  { "culture": "ainu" }
+]
