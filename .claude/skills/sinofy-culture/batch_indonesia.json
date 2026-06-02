@@ -1,0 +1,14 @@
+[
+  { "culture": "malayan" },
+  { "culture": "acehnese" },
+  { "culture": "sumatran" },
+  { "culture": "bornean" },
+  { "culture": "sundanese" },
+  { "culture": "javanese" },
+  { "culture": "nusa_tenggara",
+    "loc": {"english":"Sino-Nusa Tenggara","french":"sino-nusa tenggara","german":"Sino-Nusa Tenggara","spanish":"sino-nusa tenggara"} },
+  { "culture": "sulawesi" },
+  { "culture": "moluccan" },
+  { "culture": "filipino" },
+  { "culture": "papuan", "exclude": ["1236 - Rabaul.txt"] }
+]

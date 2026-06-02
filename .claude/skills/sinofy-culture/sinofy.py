@@ -196,21 +196,39 @@ def fix_pre1444(text):
         text = text[:s] + nt + text[e:]
     return text, len(edits)
 
-def transform_province(text, src, target, religion):
+def transform_province(text, src, target, religion, trade_good=None):
     nl = '\r\n' if '\r\n' in text else '\n'
-    text = re.sub(r'(?m)^owner\s*=\s*\w+',      'owner = MNG',      text, count=1)
-    text = re.sub(r'(?m)^controller\s*=\s*\w+', 'controller = MNG', text, count=1)
+    def has(key):   return bool(re.search(r'(?m)^' + key + r'\s*=', text))
+    def setkey(t, key, val):
+        return re.sub(r'(?m)^' + key + r'\s*=\s*\w+', f'{key} = {val}', t, count=1)
+
+    # culture / religion / trade good (replace existing lines)
     text = re.sub(r'(?m)^culture\s*=\s*' + re.escape(src) + r'\b',
                   f'culture = {target}_new', text, count=1)
     if religion:
-        text = re.sub(r'(?m)^religion\s*=\s*\w+', f'religion = {religion}', text, count=1)
+        text = setkey(text, 'religion', religion)
+    # an owned province must not keep an 'unknown' trade good
+    if trade_good and re.search(r'(?m)^trade_goods\s*=\s*unknown\b', text):
+        text = re.sub(r'(?m)^trade_goods\s*=\s*unknown\b',
+                      f'trade_goods = {trade_good}', text, count=1)
+
+    # owner / controller: replace if present
+    if has('owner'):      text = setkey(text, 'owner', 'MNG')
+    if has('controller'): text = setkey(text, 'controller', 'MNG')
+
+    # inject any missing fields needed for a real Ming province (uncolonised
+    # provinces have no owner/controller/is_city/core in their initial block)
+    inject = []
+    if not has('owner'):       inject.append('owner = MNG')
+    if not has('controller'):  inject.append('controller = MNG')
+    if not has('is_city'):     inject.append('is_city = yes')
     if not re.search(r'(?m)^add_core\s*=\s*MNG\b', text):
-        m = re.search(r'(?m)^add_core\s*=\s*\w+[ \t]*', text)
-        if m:
-            text = text[:m.end()] + nl + 'add_core = MNG' + text[m.end():]
-        else:  # no core at all: add one right after the controller line
-            m = re.search(r'(?m)^controller\s*=\s*MNG[ \t]*', text)
-            text = text[:m.end()] + nl + 'add_core = MNG' + text[m.end():]
+        inject.append('add_core = MNG')
+    if inject:
+        m = re.match(r'(?s)^(#[^\n]*\r?\n)', text)   # keep a leading comment first
+        pos = m.end() if m else 0
+        text = text[:pos] + (nl.join(inject) + nl) + text[pos:]
+
     text, _ = fix_pre1444(text)
     return text
 
@@ -239,7 +257,7 @@ def find_provinces(src, target):
         mod_path  = os.path.join(mod_root, fn)
         eff_path  = mod_path if os.path.exists(mod_path) else os.path.join(base_root, fn)
         try:
-            if pat.search(read(eff_path)):   # effective culture is src or target_new
+            if pat.search(read(eff_path, "latin-1")):  # effective culture is src or target_new
                 found[fn] = eff_path
         except Exception:
             pass
@@ -247,7 +265,7 @@ def find_provinces(src, target):
 
 # --- verification --------------------------------------------------------
 def verify_province(path):
-    t = read(path)
+    t = read(path, "latin-1")
     owner_ok = bool(re.search(r'(?m)^owner\s*=\s*MNG', t))
     core_ok  = bool(re.search(r'(?m)^add_core\s*=\s*MNG', t))
     # simulate pre-1444 owner overrides
@@ -269,6 +287,7 @@ def main():
     ap.add_argument("--spec", help="JSON spec file (list of culture objects)")
     ap.add_argument("--culture", action="append", default=[],
                     help="culture tag (repeatable); uses default Sino-X loc names")
+    ap.add_argument("--tradegoods", help="JSON map {province_id: trade_good} applied to provinces whose trade_goods is 'unknown'")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -280,16 +299,22 @@ def main():
     if not specs:
         ap.error("provide --spec or at least one --culture")
 
-    # normalise entries: src culture, target (_new owner), religion, loc
+    tg_map = {}
+    if args.tradegoods:
+        tg_map = {str(k): v for k, v in json.loads(read(args.tradegoods)).items()}
+
+    # normalise entries: src culture, target (_new owner), religion, loc, exclude
     entries = []
     for s in specs:
         src = s["culture"]
         target = s.get("target", src)          # mapping: e.g. karen -> shan
         religion = s.get("religion")
+        exclude = set(s.get("exclude", []) or [])   # province filenames to skip
         loc = default_loc(target)
         loc.update(s.get("loc", {}) or {})
         LOC_NAMES[target] = loc
-        entries.append({"src": src, "target": target, "religion": religion})
+        entries.append({"src": src, "target": target, "religion": religion,
+                        "exclude": exclude})
 
     # cultures whose <name>_new must be created/localised (skip mapping entries)
     creates = [e["target"] for e in entries if e["src"] == e["target"]]
@@ -324,19 +349,27 @@ def main():
         label = src if src == target else f"{src}->{target}"
         provs = find_provinces(src, target)
         for fn, srcpath in sorted(provs.items()):
-            t = read(srcpath)
+            if fn in e["exclude"]:
+                prov_report.append((label, target, fn, "EXCLUDED (skipped)"))
+                continue
+            pid = re.match(r'(\d+)', fn)
+            tg = tg_map.get(pid.group(1)) if pid else None
+            t = read(srcpath, "latin-1")
             if re.search(r'(?m)^culture\s*=\s*' + re.escape(target) + r'_new\b', t) \
-               and re.search(r'(?m)^owner\s*=\s*MNG', t):
+               and re.search(r'(?m)^owner\s*=\s*MNG', t) \
+               and not re.search(r'(?m)^trade_goods\s*=\s*unknown\b', t):
                 prov_report.append((label, target, fn, "already done"))
                 continue
-            nt = transform_province(t, src, target, e["religion"])
+            nt = transform_province(t, src, target, e["religion"], tg)
             outpath = p_mod(PROV_REL, fn)
             if not args.dry_run:
-                write(outpath, nt)
+                write(outpath, nt, "latin-1")
             o, k, eff = verify_province(outpath) if not args.dry_run \
                 else (True, True, "MNG(dry)")
+            tgnow = re.search(r'(?m)^trade_goods\s*=\s*(\w+)', nt)
+            tgs = tgnow.group(1) if tgnow else "-"
             prov_report.append((label, target, fn,
-                                f"owner_MNG={o} core_MNG={k} start_owner={eff}"))
+                                f"owner_MNG={o} core_MNG={k} start_owner={eff} tg={tgs}"))
 
     print("=== SHARED FILES ===")
     for r in report:
@@ -347,7 +380,8 @@ def main():
         if label != cur:
             print(f"  [{label}] -> {target}_new")
             cur = label
-        flag = "" if ("owner_MNG=True" in st or "already" in st or "dry" in st) else "  <-- CHECK"
+        flag = "" if ("owner_MNG=True" in st or "already" in st or "dry" in st
+                      or "EXCLUDED" in st) else "  <-- CHECK"
         print(f"    {safe(fn):32s} {st}{flag}")
     if not prov_report:
         print("  (no provinces found)")

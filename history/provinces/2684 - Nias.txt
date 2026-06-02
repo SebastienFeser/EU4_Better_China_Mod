@@ -1,0 +1,28 @@
+#2684 - Nias
+owner = MNG
+controller = MNG
+is_city = yes
+add_core = MNG
+
+culture = sumatran_new
+religion = hinduism
+capital = "Nias"
+trade_goods = tropical_wood
+hre = no
+base_tax = 1 
+base_production = 1
+base_manpower = 1
+native_size = 5
+native_ferocity = 2
+native_hostileness = 2
+
+
+
+discovered_by = chinese
+discovered_by = indian
+discovered_by = muslim
+discovered_by = ottoman
+
+1405.1.1 = { discovered_by = MNG }
+1509.1.1 = { discovered_by = POR }
+

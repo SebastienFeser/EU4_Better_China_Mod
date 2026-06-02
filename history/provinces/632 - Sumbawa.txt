@@ -1,0 +1,24 @@
+#632 - Sumbawa
+owner = MNG
+controller = MNG
+is_city = yes
+add_core = MNG
+
+culture = nusa_tenggara_new
+religion = animism
+capital = "Sumbawa"
+trade_goods = tropical_wood
+hre = no
+base_tax = 3 
+base_production = 3
+base_manpower = 2
+native_size = 5
+native_ferocity = 1
+native_hostileness = 5
+
+
+
+discovered_by = chinese
+
+1512.1.1 = { discovered_by = POR }
+

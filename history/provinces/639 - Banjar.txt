@@ -1,0 +1,32 @@
+#639 - Banjar
+owner = MNG
+controller = MNG
+is_city = yes
+add_core = MNG
+
+culture = bornean_new
+religion = hinduism
+capital = "Banjar"
+trade_goods = gems
+hre = no
+base_tax = 4
+base_production = 4
+base_manpower = 3
+native_size = 60
+native_ferocity = 6
+native_hostileness = 6
+
+discovered_by = chinese
+discovered_by = indian
+discovered_by = muslim
+discovered_by = ottoman
+
+1444.1.1 = {
+	owner = MNG
+	controller = MNG
+	add_core = BNJ
+	is_city = yes
+	trade_goods = cloth
+} # Banjar Sultanate was founded
+
+1521.1.1 = { discovered_by = POR }
