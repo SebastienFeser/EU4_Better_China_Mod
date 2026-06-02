@@ -1,8 +1,8 @@
 #607 - Vijaya
 
-owner = CHA
-controller = CHA
-culture = cham
+owner = MNG
+controller = MNG
+culture = cham_new
 religion = hinduism
 capital = "Vijaya"
 trade_goods = tropical_wood
@@ -13,6 +13,7 @@ base_manpower = 2
 fort_15th = yes
 is_city = yes
 add_core = CHA
+add_core = MNG
 discovered_by = chinese
 discovered_by = indian
 discovered_by = muslim
